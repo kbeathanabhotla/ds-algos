@@ -41,17 +41,20 @@ public class LinkedListTest {
     }
 
     @Test
-    public void test_ll() {
+    public void test_reverse_linked_list() {
+        // @@ SETUP
         LinkedList<Integer> ll = new LinkedList<>();
 
         ll.add(5);
         ll.add(6);
         ll.add(7);
 
-        System.out.println(ll);
+        // @@ EXERCISE
         ll.reverse();
-        System.out.println(ll);
 
-
+        // @@ VERIFY
+        Assert.assertTrue(ll.get(0) == 5);
+        Assert.assertTrue(ll.get(1) == 6);
+        Assert.assertTrue(ll.get(2) == 7);
     }
 }
