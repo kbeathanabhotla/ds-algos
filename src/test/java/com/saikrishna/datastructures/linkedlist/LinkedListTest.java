@@ -57,4 +57,27 @@ public class LinkedListTest {
         Assert.assertTrue(ll.get(1) == 6);
         Assert.assertTrue(ll.get(2) == 7);
     }
+
+    @Test
+    public void test_rotate_left() {
+        // @@ SETUP
+        LinkedList<Integer> ll = new LinkedList<>();
+
+        ll.add(5);
+        ll.add(6);
+        ll.add(7);
+
+        // @@ EXERCISE
+        ll.rotateLeft(1);
+        ll.rotateLeft(2);
+        ll.rotateLeft(3);
+        ll.rotateLeft(4);
+        ll.rotateLeft(5);
+        ll.rotateLeft(6);
+
+        // @@ VERIFY
+        Assert.assertTrue(ll.get(0) == 7);
+        Assert.assertTrue(ll.get(1) == 6);
+        Assert.assertTrue(ll.get(2) == 5);
+    }
 }

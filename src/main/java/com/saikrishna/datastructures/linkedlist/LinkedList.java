@@ -5,7 +5,7 @@ package com.saikrishna.datastructures.linkedlist;
  */
 public class LinkedList<T> {
 
-    private Node<T> head;
+    private Node head;
 
     /**
      * Method to add an object to the linked list
@@ -130,7 +130,7 @@ public class LinkedList<T> {
         }
         Node prev = null;
         Node currentNode = head;
-        Node next = null;
+        Node next;
         while(currentNode != null) {
             next = currentNode.next;
             currentNode.next = prev;
@@ -192,16 +192,42 @@ public class LinkedList<T> {
         }
     }
 
+    public void rotateLeft(int units) {
+        if (head == null) {
+            return;
+        }
+        units = units % size();
+        if (units == 0) {
+            return;
+        }
+        Node currentNode = head;
+        Node prev = null;
+        while (units > 0) {
+            prev = currentNode;
+            currentNode = currentNode.next;
+            units--;
+        }
+        prev.next = null;
+        Node returnHead = currentNode;
+
+        while (currentNode != null && currentNode.next != null) {
+            currentNode = currentNode.next;
+        }
+
+        currentNode.next = this.head;
+        this.head = returnHead;
+    }
+
     @Override
     public String toString() {
         return "["+ (head != null ? head.toString() : "") +"]";
     }
 
-    private class Node<T> {
-        public Node<T> next;
+    private class Node {
+        public Node next;
         public T data;
 
-        public Node(T data, Node<T> next) {
+        public Node(T data, Node next) {
             this.next = next;
             this.data = data;
         }

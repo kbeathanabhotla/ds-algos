@@ -6,5 +6,9 @@ Practise projec for Datastructures and Algorithms, contains the following:
     - Insertion
     - Deletion
     - Retrival
-    - Get Size
+    - Get size
     - Reverse
+    - Detect loop
+    - Detect and remove loop
+    - Rotate Left
+    
