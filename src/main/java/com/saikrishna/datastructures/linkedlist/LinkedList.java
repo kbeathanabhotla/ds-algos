@@ -192,6 +192,10 @@ public class LinkedList<T> {
         }
     }
 
+    /**
+     * Method to rotate the linked list
+     * @param units The number of left shifts
+     */
     public void rotateLeft(int units) {
         if (head == null) {
             return;
@@ -216,6 +220,90 @@ public class LinkedList<T> {
 
         currentNode.next = this.head;
         this.head = returnHead;
+    }
+
+    /**
+     * Method to delete and keep few nodes in a pattern.
+     * This method leaves the first m nodes untouched and deletes the next n nodes and leaves the next m nodes and this series continues.
+     *
+     * @param m The number of nodes to keep
+     * @param n The number of nodes to delete
+     */
+    public void keepMAndDeleteN(int m, int n) {
+        keepMAndDeleteN(head, m, n);
+    }
+
+    /**
+     * A private method to keep m nodes and delete n nodes recursively
+     * @param head The starting point of the list
+     * @param m number of nodes to keep
+     * @param n number of nodes to delete
+     */
+    private void keepMAndDeleteN(Node head, int m, int n) {
+        if (head == null || n <= 0 || m < 0) {
+            return;
+        }
+        if (m == 0) {
+            head = null;
+        }
+        Node currentNode = head;
+        for (int i = m; i > 1 && currentNode.next != null; i--) {
+            currentNode = currentNode.next;
+        }
+        if (currentNode == null || currentNode.next == null) {
+            return;
+        }
+
+        Node temp = currentNode.next;
+        for (int i = n; i > 1 && temp.next != null; i--) {
+            temp = temp.next;
+        }
+        currentNode.next = temp.next;
+        keepMAndDeleteN(currentNode.next, m, n);
+    }
+
+    // TODO complete the functionality
+    public boolean isPalindrome() {
+
+        Node start = head;
+        Node mid = head;
+        Node midPrev = null;
+
+        /*
+            14 -> 13 -> 11 -> 10 -> 9 -> 8
+            14 -> 13 -> 11 -> 10 -> 9 -> 8 -> 7
+         */
+        while (start.next != null && start.next.next != null) {
+            midPrev = mid;
+            mid = mid.next;
+            start = start.next.next;
+        }
+
+        int size = size();
+        Node toReverse = (size % 2 == 0) ? mid.next : mid;
+
+        Node prev = (size % 2 == 0) ? mid : midPrev;
+        Node current = toReverse;
+        Node next;
+
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+
+        start = head;
+        mid = prev;
+
+
+
+        boolean isPalindrome = false;
+
+
+
+
+        return isPalindrome;
     }
 
     @Override

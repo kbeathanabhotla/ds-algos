@@ -11,4 +11,5 @@ Practise projec for Datastructures and Algorithms, contains the following:
     - Detect loop
     - Detect and remove loop
     - Rotate Left
+    - Keep M nodes and delete next N nodes
     
