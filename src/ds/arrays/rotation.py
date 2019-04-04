@@ -40,6 +40,29 @@ def array_rotate_test():
     assert array_rotate([], 3) == []
 
 
+def reverse_array_2(arr, start, end):
+    """
+    A method to reverse an array within the given start and end ranges
+
+    Space complexity = O(1)
+    Time complexity = O(n)/2
+
+    :param arr: The array to reverse
+    :param start: The start index within array to reverse
+    :param end: The end index within array to reverse
+    :return: reversed array
+    """
+    while start < end:
+        temp = arr[start]
+        arr[start] = arr[end]
+        arr[end] = temp
+
+        start += 1
+        end -= 1
+
+    return arr
+
+
 def reverse_array(arr):
     """
     A simple method to reverse an array.
@@ -51,18 +74,7 @@ def reverse_array(arr):
     :return: reversed array
 
     """
-    start = 0
-    end = len(arr) - 1
-
-    while start < end:
-        temp = arr[start]
-        arr[start] = arr[end]
-        arr[end] = temp
-
-        start += 1
-        end -= 1
-
-    return arr
+    return reverse_array_2(arr, 0, len(arr) - 1)
 
 
 def array_reverse_test():
@@ -93,10 +105,7 @@ def array_rotate_reversal_technique(arr, n):
     if n > len(arr):
         n = n % len(arr)
 
-    x = reverse_array(arr[:n])
-    y = reverse_array(arr[n:])
-    x.extend(y)
-    return reverse_array(x)
+    return reverse_array_2(reverse_array_2(reverse_array_2(arr, n, len(arr) - 1), 0, n - 1), 0, len(arr) - 1)
 
 
 def array_rotate_reversal_technique_test():
@@ -123,4 +132,4 @@ def search_elem_in_sorted_rotated_array_test():
 
 
 if __name__ == '__main__':
-    search_elem_in_sorted_rotated_array_test()
+    array_rotate_reversal_technique_test()
